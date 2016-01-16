@@ -15,6 +15,18 @@ public class KalahForm {
 		reset();
 	}
 	
+	
+	
+	public KalahForm(int[] pits, int currentPlayer, int victory, int pitPlayed) {
+		super();
+		this.pits = pits;
+		this.currentPlayer = currentPlayer;
+		this.victory = victory;
+		this.pitPlayed = pitPlayed;
+	}
+
+
+
 	public void reset(){
 		pits[0] = 6;
 		pits[1] = 6;
@@ -29,7 +41,10 @@ public class KalahForm {
 		pits[10] = 6;
 		pits[11] = 6;
 		pits[12] = 6;
-		pits[13] = 0;		
+		pits[13] = 0;
+		currentPlayer = 1;
+		victory = 0;
+		pitPlayed = -1;
 	}
 
 	public int[] getPits() {

@@ -24,7 +24,7 @@ public class KalahController {
 			final BindingResult pBindingResult, final ModelMap pModel) {
 
 		if (!pBindingResult.hasErrors()) {
-			play(pKalah.getPits(), pKalah.getCurrentPlayer(), pKalah.getPitPlayed());
+			play(pKalah);
 		}
 		return "game";
 	}
@@ -40,12 +40,17 @@ public class KalahController {
 		return "game";
 	}
 
-	private void play(int pits[], int player, int pitIndex) {
+	private void play(KalahForm form) {
+		
+		int pits[] = form.getPits();
+		int player = form.getCurrentPlayer();
+		int pitIndex = form.getPitPlayed();
+//		int victory = form.getVictory();
 
 		// Initialisation
 		int nbStonesInSelPit = -1;
 		int nbGap = 0;
-		int tempPitIndex = -1;
+		int tempPitIndex = pitIndex;
 
 		// player 1 playing
 
@@ -56,7 +61,7 @@ public class KalahController {
 		// We first empty the pit selected
 		pits[pitIndex] = 0;
 
-		for (int i = 0; i < nbStonesInSelPit - 1; i++) {
+		for (int i = 1; i < nbStonesInSelPit ; i++) {
 			tempPitIndex = (pitIndex + i + nbGap) % 14;
 
 			if (player == 1) {
@@ -72,11 +77,9 @@ public class KalahController {
 					tempPitIndex = 7;
 				}
 			}
-
 			// We add one stone in each of the (nbStonesInSelPit-1) coming pits
 			// The %14 allow to come back at the first position
 			pits[tempPitIndex] += 1;
-
 		}
 
 		// Case of the last stone
@@ -85,8 +88,10 @@ public class KalahController {
 		if (player == 1) {
 			if (tempPitIndex == 6) {
 				// TODO Handle the "play again" event for player 1
+				form.setCurrentPlayer(1);
 				pits[tempPitIndex] += 1;
-			} else {
+			} else {				
+				form.setCurrentPlayer(2);			
 				if (tempPitIndex == 13) {
 					// if player1 is playing, we can't add a stone in player2
 					// Kalah
@@ -110,8 +115,12 @@ public class KalahController {
 		} else {
 			if (tempPitIndex == 13) {
 				// TODO Handle the "play again" event
+//				player = 2;
+				form.setCurrentPlayer(2);
 				pits[tempPitIndex] += 1;
 			} else {
+//				player = 1;
+				form.setCurrentPlayer(1);
 				if (tempPitIndex == 6) {
 					// if player2 is playing, we can't add a stone in player1
 					// Kalah
@@ -140,11 +149,19 @@ public class KalahController {
 				// all remaining stones in the opponent's pits are put in his
 				// kalah
 				pits[13] = pits[13] + pits[7] + pits[8] + pits[9] + pits[10] + pits[11] + pits[12];
+				pits[12] = 0;
+				pits[11] = 0;
+				pits[10] = 0;
+				pits[9] = 0;
+				pits[8] = 0;
+				pits[7] = 0;
 
 				if (pits[6] > pits[13]) {
-					// TODO player1 wins
+					form.setCurrentPlayer(0);
+					form.setVictory(1);
 				} else {
-					// TODO player2 wins
+					form.setCurrentPlayer(0);
+					form.setVictory(2);
 				}
 			}
 		} else {
@@ -154,11 +171,19 @@ public class KalahController {
 				// all remaining stones in the opponent's pits are put in his
 				// kalah
 				pits[6] = pits[6] + pits[0] + pits[1] + pits[2] + pits[3] + pits[4] + pits[5];
+				pits[5] = 0;
+				pits[4] = 0;
+				pits[3] = 0;
+				pits[2] = 0;
+				pits[1] = 0;
+				pits[0] = 0;
 
 				if (pits[6] > pits[13]) {
-					// TODO player1 wins
+					form.setCurrentPlayer(0);
+					form.setVictory(1);
 				} else {
-					// TODO player2 wins
+					form.setCurrentPlayer(0);
+					form.setVictory(2);
 				}
 			}
 		}
