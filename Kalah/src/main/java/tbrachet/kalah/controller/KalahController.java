@@ -30,7 +30,7 @@ public class KalahController {
 	}
 
 	@RequestMapping(value = "/newGame", method = RequestMethod.GET)
-	public String newGame(@ModelAttribute(value = "kalah") final KalahForm pKalah, final BindingResult pBindingResult,
+	public String newGame(@Valid @ModelAttribute(value = "kalah") final KalahForm pKalah, final BindingResult pBindingResult,
 			final ModelMap pModel) {
 
 		pKalah.reset();
@@ -45,14 +45,11 @@ public class KalahController {
 		int pits[] = form.getPits();
 		int player = form.getCurrentPlayer();
 		int pitIndex = form.getPitPlayed();
-//		int victory = form.getVictory();
 
 		// Initialisation
 		int nbStonesInSelPit = -1;
 		int nbGap = 0;
 		int tempPitIndex = pitIndex;
-
-		// player 1 playing
 
 		// we don't need to verify if the player selected an authorized pit
 		// it's done in the validate method of the form

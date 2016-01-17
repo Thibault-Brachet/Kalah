@@ -15,13 +15,13 @@ import tbrachet.kalah.controller.KalahForm;
 
 public class KalahControllerTest {
 
-	private KalahController controllerTest;
+	private KalahController controller;
 
 	private KalahForm form;
 
 	@Before
 	public void init() {
-		controllerTest = new KalahController();
+		controller = new KalahController();
 	}
 	
 	/**
@@ -38,7 +38,7 @@ public class KalahControllerTest {
 		form = new KalahForm(pits, currentPlayer, victory, pitPlayed);
 		
 		
-		controllerTest.newGame(form, null, new ModelMap());
+		controller.newGame(form, null, new ModelMap());
 		
 		int pitsExpected[] = { 6, 6, 6, 6, 6, 6, 0, 6, 6, 6, 6, 6, 6, 0 };
 		int currentPlayerExpected = 1;
@@ -82,7 +82,7 @@ public class KalahControllerTest {
 		try {
 			method = KalahController.class.getDeclaredMethod("play", KalahForm.class);
 			method.setAccessible(true);
-			method.invoke(controllerTest, form);
+			method.invoke(controller, form);
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
 		} catch (SecurityException e) {
@@ -117,7 +117,7 @@ public class KalahControllerTest {
 		try {
 			method = KalahController.class.getDeclaredMethod("play", KalahForm.class);
 			method.setAccessible(true);
-			method.invoke(controllerTest, form);
+			method.invoke(controller, form);
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
 		} catch (SecurityException e) {
@@ -151,7 +151,7 @@ public class KalahControllerTest {
 		try {
 			method = KalahController.class.getDeclaredMethod("play", KalahForm.class);
 			method.setAccessible(true);
-			method.invoke(controllerTest, form);
+			method.invoke(controller, form);
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
 		} catch (SecurityException e) {
@@ -185,7 +185,7 @@ public class KalahControllerTest {
 		try {
 			method = KalahController.class.getDeclaredMethod("play", KalahForm.class);
 			method.setAccessible(true);
-			method.invoke(controllerTest, form);
+			method.invoke(controller, form);
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
 		} catch (SecurityException e) {
@@ -220,7 +220,7 @@ public class KalahControllerTest {
 		try {
 			method = KalahController.class.getDeclaredMethod("play", KalahForm.class);
 			method.setAccessible(true);
-			method.invoke(controllerTest, form);
+			method.invoke(controller, form);
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
 		} catch (SecurityException e) {
@@ -255,7 +255,7 @@ public class KalahControllerTest {
 		try {
 			method = KalahController.class.getDeclaredMethod("play", KalahForm.class);
 			method.setAccessible(true);
-			method.invoke(controllerTest, form);
+			method.invoke(controller, form);
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
 		} catch (SecurityException e) {
@@ -289,7 +289,7 @@ public class KalahControllerTest {
 		try {
 			method = KalahController.class.getDeclaredMethod("play", KalahForm.class);
 			method.setAccessible(true);
-			method.invoke(controllerTest, form);
+			method.invoke(controller, form);
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
 		} catch (SecurityException e) {
@@ -322,7 +322,7 @@ public class KalahControllerTest {
 		try {
 			method = KalahController.class.getDeclaredMethod("play", KalahForm.class);
 			method.setAccessible(true);
-			method.invoke(controllerTest, form);
+			method.invoke(controller, form);
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
 		} catch (SecurityException e) {
